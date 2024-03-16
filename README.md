@@ -55,5 +55,3 @@ _ componentDidMount Called
 - we used lazy loading on About Component
 
 # CORS(Cross-Origin Resource Sharing)
-
-- To handel CORS i used chrome extension

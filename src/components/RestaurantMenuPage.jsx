@@ -1,10 +1,13 @@
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
+import RestaurantCategory from "./RestaurantCategory";
+import { useState } from "react";
 
 const RestaurantMenuPage = () => {
   const { resId } = useParams();
   const resInfo = useRestaurantMenu(resId);
+  const [showIndex, setShowIndex] = useState(0);
 
   if (resInfo === null) return <Shimmer />;
 
@@ -13,6 +16,13 @@ const RestaurantMenuPage = () => {
   const { itemCards } =
     resInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card
       ?.card;
+
+  const categories =
+    resInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter(
+      (category) =>
+        category?.card?.card?.["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    );
 
   return (
     <div className="m-5 p-5">
@@ -23,22 +33,22 @@ const RestaurantMenuPage = () => {
         {cuisines.join(", ")} - {costForTwoMessage}
         cuisines and cost for two
       </p>
-      <h1 className="font-bold text-xl mt-5">Menu </h1>
-
-      <h2 className="mt-4">Recommended({itemCards?.length})</h2>
-
-      <ul className="">
-        {itemCards?.map((item) => {
-          return (
-            <li key={item?.card?.info?.id} className="m-2 p-3 bg-green-100">
-              {item?.card?.info?.isVeg ? "Veg " : "Non-veg "}
-              {item?.card?.info?.name} - {"Rs. "}
-              {item?.card?.info?.defaultPrice / 100 ||
-                item?.card?.info?.price / 100}
-            </li>
-          );
-        })}
-      </ul>
+      <div className=" ">
+        <div className="">
+          {categories.map((category, index) => {
+            return (
+              <RestaurantCategory
+                data={category?.card?.card}
+                key={category?.card?.card?.title}
+                showItems={index === showIndex ? true : false}
+                setShowIndex={() => {
+                  setShowIndex(index);
+                }}
+              />
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 };
