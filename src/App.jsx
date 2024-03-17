@@ -8,6 +8,7 @@ import Body from "./components/Body";
 import Contact from "./components/Contact";
 import ErrorPage from "./components/ErrorPage";
 import RestaurantMenuPage from "./components/RestaurantMenuPage";
+import Cart from "./components/Cart";
 import UserContext from "./utils/userContext";
 import { lazy } from "react";
 
@@ -57,6 +58,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/restaurant/:resId",
         element: <RestaurantMenuPage />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
     errorElement: <ErrorPage />,

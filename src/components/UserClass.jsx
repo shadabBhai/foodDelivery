@@ -26,7 +26,7 @@ class UserClass extends React.Component {
     const { name, location, login } = this?.state?.userInfo;
 
     return (
-      <div className="bg-green-100 text-center my-5   flex  justify-center">
+      <div className="bg-green-100  text-center my-5   flex  justify-center ">
         <div>
           <img src={GIT_IMAGE_URL} alt="" className="w-36 rounded-full" />
         </div>

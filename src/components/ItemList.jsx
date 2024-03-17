@@ -28,7 +28,7 @@ const ItemList = ({ items }) => {
 
               <button
                 className="bg-green-600 text-white items-center mx-20  w-16 rounded  "
-                onClick={() => console.log("add")}
+                onClick={() => console.log(item?.card?.info?.id)}
               >
                 Add
               </button>
