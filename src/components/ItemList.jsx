@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import { ITEM_IMAGE_URL } from "../utils/constants";
+import UserContext from "../utils/userContext";
 
 const ItemList = ({ items }) => {
+  const { setCartItem, cart } = useContext(UserContext);
+
   return (
     <div>
       {items.map((item) => {
@@ -28,7 +32,7 @@ const ItemList = ({ items }) => {
 
               <button
                 className="bg-green-600 text-white items-center mx-20  w-16 rounded  "
-                onClick={() => console.log(item?.card?.info?.id)}
+                onClick={() => setCartItem([...cart, item?.card?.info])}
               >
                 Add
               </button>

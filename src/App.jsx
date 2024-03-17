@@ -17,6 +17,7 @@ const About = lazy(() => import("./components/About"));
 
 const AppLayout = () => {
   const [username, setUserName] = useState();
+  const [cartItem, setCartItem] = useState([]);
   useEffect(() => {
     //make api  call  and send  username  and password
     const data = {
@@ -24,10 +25,19 @@ const AppLayout = () => {
     };
     setUserName(data?.name);
   }, []);
+  // console.log(cartItem);
   return (
-    <UserContext.Provider value={{ loggedInUser: username, setUserName }}>
+    <UserContext.Provider
+      value={{
+        loggedInUser: username,
+        setUserName,
+        cart: cartItem,
+        setCartItem,
+      }}
+    >
       <div className="app">
         <Header />
+
         <Outlet />
       </div>
     </UserContext.Provider>

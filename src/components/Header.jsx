@@ -8,7 +8,7 @@ const Header = () => {
 
   const onlineStatus = useOnlineStatus();
 
-  const { loggedInUser } = useContext(UserContext);
+  const { loggedInUser, cart } = useContext(UserContext);
   return (
     <div className="flex justify-between bg-green-300">
       <div className="logo-container">
@@ -25,7 +25,9 @@ const Header = () => {
           <li className="px-4">
             <Link to="/about">About Us</Link>
           </li>
-          <li className="px-4">Cart</li>
+          <li className="px-4">
+            <Link to="/cart"> Cart: {cart.length}</Link>
+          </li>
           <button
             className="btn-login"
             onClick={() => {
