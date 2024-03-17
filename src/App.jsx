@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDom from "react-dom/client";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
@@ -8,17 +8,28 @@ import Body from "./components/Body";
 import Contact from "./components/Contact";
 import ErrorPage from "./components/ErrorPage";
 import RestaurantMenuPage from "./components/RestaurantMenuPage";
+import UserContext from "./utils/userContext";
 import { lazy } from "react";
 
 // to make other bundel
 const About = lazy(() => import("./components/About"));
 
 const AppLayout = () => {
+  const [username, setUserName] = useState();
+  useEffect(() => {
+    //make api  call  and send  username  and password
+    const data = {
+      name: "shadab khan",
+    };
+    setUserName(data?.name);
+  }, []);
   return (
-    <div className="app">
-      <Header />
-      <Outlet />
-    </div>
+    <UserContext.Provider value={{ loggedInUser: username, setUserName }}>
+      <div className="app">
+        <Header />
+        <Outlet />
+      </div>
+    </UserContext.Provider>
   );
 };
 

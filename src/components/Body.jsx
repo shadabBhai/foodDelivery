@@ -1,11 +1,12 @@
 import ResturentCard from "./ResturentCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 import useOnlineStatus from "../utils/useOnlineStatus";
 import useRestaurantList from "../utils/useRestaurantList";
 import useFilteredRestaurantList from "../utils/useFilteredRestaurantList";
+import UserContext from "../utils/userContext";
 
 const Body = () => {
   const restaurantsList = useRestaurantList();
@@ -17,6 +18,7 @@ const Body = () => {
   if (restaurantsList?.length === 0 || filteredRestaurants?.length === 0) {
     return <Shimmer />;
   }
+  const { setUserName, loggedInUser } = useContext(UserContext);
 
   return (
     <div className="body">
@@ -58,6 +60,15 @@ const Body = () => {
           >
             Top Rated Resturants
           </button>
+        </div>
+        <div className="">
+          <label htmlFor="user name"> User Name</label>
+          <input
+            type="text"
+            className="border border-black px-2 rounded"
+            value={loggedInUser}
+            onChange={(e) => setUserName(e.target.value)}
+          />
         </div>
       </div>
 
