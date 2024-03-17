@@ -26,7 +26,10 @@ const ItemList = ({ items }) => {
             <div className="">
               <img src={ITEM_IMAGE_URL + item?.card?.info?.imageId} alt="" />
 
-              <button className="bg-green-600 text-white items-center mx-20  w-16 rounded ">
+              <button
+                className="bg-green-600 text-white items-center mx-20  w-16 rounded  "
+                onClick={() => console.log("add")}
+              >
                 Add
               </button>
             </div>
