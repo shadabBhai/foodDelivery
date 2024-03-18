@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ITEM_IMAGE_URL } from "../utils/constants";
+import { CDN_URL } from "../utils/constants";
 import UserContext from "../utils/userContext";
 
 const ItemList = ({ items }) => {
@@ -28,7 +28,7 @@ const ItemList = ({ items }) => {
               </p>
             </div>
             <div className="">
-              <img src={ITEM_IMAGE_URL + item?.card?.info?.imageId} alt="" />
+              <img src={CDN_URL + item?.card?.info?.imageId} alt="" />
 
               <button
                 className="bg-green-600 text-white items-center mx-20  w-16 rounded  "
