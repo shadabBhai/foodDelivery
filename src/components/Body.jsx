@@ -17,7 +17,6 @@ const Body = () => {
   if (restaurantsList?.length === 0 || filteredRestaurants?.length === 0) {
     return <Shimmer />;
   }
-  console.log(filteredRestaurants);
 
   return (
     <div className="body">
