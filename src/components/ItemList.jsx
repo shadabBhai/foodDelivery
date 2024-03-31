@@ -1,10 +1,15 @@
 import { useContext } from "react";
 import { CDN_URL } from "../utils/constants";
 import UserContext from "../utils/userContext";
+import { useDispatch } from "react-redux";
+import { addItems } from "../utils/CartSlice";
 
 const ItemList = ({ items }) => {
   const { setCartItem, cart } = useContext(UserContext);
-
+  const dispatch = useDispatch();
+  // const handelAddItem = () => {
+  //   ;
+  // };
   return (
     <div>
       {items.map((item) => {
@@ -32,7 +37,7 @@ const ItemList = ({ items }) => {
 
               <button
                 className="bg-green-600 text-white items-center mx-20  w-16 rounded  "
-                onClick={() => setCartItem([...cart, item?.card?.info])}
+                onClick={() => dispatch(addItems(item?.card?.info?.id))}
               >
                 Add
               </button>

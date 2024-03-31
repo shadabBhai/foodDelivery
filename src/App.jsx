@@ -11,6 +11,8 @@ import RestaurantMenuPage from "./components/RestaurantMenuPage";
 import Cart from "./components/Cart";
 import UserContext from "./utils/userContext";
 import { lazy } from "react";
+import { Provider } from "react-redux";
+import AppStore from "./utils/AppStore";
 
 // to make other bundel
 const About = lazy(() => import("./components/About"));
@@ -27,20 +29,22 @@ const AppLayout = () => {
   }, []);
   // console.log(cartItem);
   return (
-    <UserContext.Provider
-      value={{
-        loggedInUser: username,
-        setUserName,
-        cart: cartItem,
-        setCartItem,
-      }}
-    >
-      <div className="app">
-        <Header />
+    <Provider store={AppStore}>
+      <UserContext.Provider
+        value={{
+          loggedInUser: username,
+          setUserName,
+          cart: cartItem,
+          setCartItem,
+        }}
+      >
+        <div className="app">
+          <Header />
 
-        <Outlet />
-      </div>
-    </UserContext.Provider>
+          <Outlet />
+        </div>
+      </UserContext.Provider>
+    </Provider>
   );
 };
 
