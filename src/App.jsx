@@ -1,15 +1,14 @@
-import React, { lazy, Suspense, useEffect, useState } from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDom from "react-dom/client";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
 import Header from "./components/Header";
 import Body from "./components/Body";
-// import About from "./components/About";
+
 import Contact from "./components/Contact";
 import ErrorPage from "./components/ErrorPage";
 import RestaurantMenuPage from "./components/RestaurantMenuPage";
 import Cart from "./components/Cart";
-import UserContext from "./utils/userContext";
 import { lazy } from "react";
 import { Provider } from "react-redux";
 import AppStore from "./utils/AppStore";
@@ -18,32 +17,13 @@ import AppStore from "./utils/AppStore";
 const About = lazy(() => import("./components/About"));
 
 const AppLayout = () => {
-  const [username, setUserName] = useState();
-  const [cartItem, setCartItem] = useState([]);
-  useEffect(() => {
-    //make api  call  and send  username  and password
-    const data = {
-      name: "shadab khan",
-    };
-    setUserName(data?.name);
-  }, []);
-  // console.log(cartItem);
   return (
     <Provider store={AppStore}>
-      <UserContext.Provider
-        value={{
-          loggedInUser: username,
-          setUserName,
-          cart: cartItem,
-          setCartItem,
-        }}
-      >
-        <div className="app">
-          <Header />
+      <div className="app">
+        <Header />
 
-          <Outlet />
-        </div>
-      </UserContext.Provider>
+        <Outlet />
+      </div>
     </Provider>
   );
 };
