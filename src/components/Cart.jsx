@@ -7,6 +7,7 @@ import { clearCart } from "../utils/CartSlice";
 const Cart = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((store) => store.cart.items);
+  console.log(cartItems);
 
   const [totalAmount, setTotalAmount] = useState(0);
 
@@ -14,7 +15,7 @@ const Cart = () => {
     const calculate = () => {
       let total = 0;
       cartItems.forEach((element) => {
-        total += element?.price || item?.defaultPrice || 0;
+        total += element?.price || element?.defaultPrice || 0;
       });
       setTotalAmount(total / 100);
     };
