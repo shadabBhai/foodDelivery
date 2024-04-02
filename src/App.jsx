@@ -9,7 +9,7 @@ import Contact from "./components/Contact";
 import ErrorPage from "./components/ErrorPage";
 import RestaurantMenuPage from "./components/RestaurantMenuPage";
 import Cart from "./components/Cart";
-import { lazy } from "react";
+
 import { Provider } from "react-redux";
 import AppStore from "./utils/AppStore";
 
